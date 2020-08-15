@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { FC } from "react";
+import "./App.css";
+import {Router, Switch, Route, Link } from "react-router-dom";//BrowserRouter as
+import HomePage from "./pages/HomePage";
+import LockersPage from "./pages/LockersPage";
+import DataLockerPage from "./pages/DataLockerPage"
+import history from "./history";
+import { Locker } from "./Entities/Locker";
 
-function App() {
+interface MyProps {}
+
+const App: FC<MyProps> = ({}) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Router history={history}>
+      <div className="App">
+        <Switch>
+          <Route path="/" exact component={HomePage} />
+          <Route path="/LockersPage" component={LockersPage} />
+          <Route path="/DataLockerPage" component={DataLockerPage} /*render={(item) => <DataLockerPage locker={item} />}*//>
+        </Switch>
+      </div>
+    </Router>
+    </>
   );
-}
+};
 
 export default App;
